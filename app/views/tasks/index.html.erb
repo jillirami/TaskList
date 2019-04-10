@@ -9,15 +9,17 @@
     No Tasks Available
   <% else %>
     Tasks are as follow:
-    <tbody>
-      <% @tasks.each do |task| %>
-        <tr>
-          <td><%= task.name %></td>
-          <td><%= task.description %></td>
-          <td><%= task.completion_date %></td>
-        </tr>
-      <% end %>
-    </tbody>
+    <table>
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <td><%= task.name %></td>
+            <td><%= task.description %></td>
+            <td><%= task.completed_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
 </nav>
 

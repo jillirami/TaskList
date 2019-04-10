@@ -1,7 +1,5 @@
-TASKS = []
-
 class TasksController < ApplicationController
-  def index
-    @tasks = TASKS
+  def index    
+    @tasks = Task.all   
   end
 end
