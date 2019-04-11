@@ -8,7 +8,7 @@
   <% if @tasks.nil? %>
     No Tasks Available
   <% else %>
-    Tasks are as follow:
+    <h3>Tasks are as follow:</h3>
     <table>
       <tbody>
         <% @tasks.each do |task| %>
@@ -19,7 +19,8 @@
           </tr>
         <% end %>
       </tbody>
-    </table>
-  <% end %>
+    </table><br>
+    <%#= image_tag "", alt: "Image of ... "%>
+    <% end %>
 </nav>
 
