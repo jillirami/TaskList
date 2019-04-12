@@ -1,17 +1,7 @@
-<h2>Form for creating a new Task</h2>
+<%# f is the FORM BUILDER %>
 
-
-<%= form_with model: @task, class: 'create-task' do |f| %>
-
-  <p>Please fill out this form to create a new task</p>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :completed_at %>
-  <%= f.text_field :completed_at %>
-
-  <%= f.submit "Save Task", class: "task-form__submit-btn" %>
-
-<% end %>
+<%= render partial: "form", locals: {
+  form_class: "new-task",
+  intro_text: "New Task Form",
+  action_name: "Add Task",
+}%>

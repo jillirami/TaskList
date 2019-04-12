@@ -2,25 +2,45 @@
   <title>Jillianne's TaskList</title>
 </head>
 
-<h1>Welcome to my TaskList!</h1>
-
+<h1>Jillianne's TaskList</h1>
 <nav>
-  <% if @tasks.nil? %>
-    No Tasks Available
-  <% else %>
-    <h3>Tasks are as follow:</h3>
-    <table>
-      <tbody>
-        <% @tasks.each do |task| %>
-          <tr>
-            <td><%= task.name %></td>
-            <td><%= task.description %></td>
-            <td><%= task.completed_at %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table><br>
-    <%#= image_tag "", alt: "Image of ... "%>
-    <% end %>
+      <% if @tasks.length == 0 %>
+      <h3>No Tasks</h3>
+      <% else %>
+          <% @tasks.each do |task| %>
+              <td><%= task.name %></td>
+              <% if task.completed_at.nil? %>
+              <td> Incomplete </td>
+              <% else %>
+              <td><%= task.completed_at %></td>
+              <% end %>
+              <td><%= link_to "Mark Complete", mark_complete_path(task.id) %></td>
+              <td><%= link_to "Unmark Complete", unmark_complete_path(task.id) %></td>
+              <td><%= link_to "Show", task_path(task.id) %>
+                  <%= link_to "Delete", task_path(task.id), method: :delete %></td>
+                  <br>
+          <% end %>
+      <% end %><br>
+    <%= link_to "Add New Task", new_task_path %>
+    <br><br>
+    <%= image_tag "tasklist.jpg", alt: "Stock image of to-do list with pen and coffee" %>
 </nav>
 
+
+
+<%# 
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+} %>
