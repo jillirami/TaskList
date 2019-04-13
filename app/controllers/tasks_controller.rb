@@ -56,7 +56,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def unmark_complete
+  def mark_incomplete
     task = Task.find_by(id: params[:id])
     if task.completed_at = "Complete"
       task.completed_at = "Incomplete"

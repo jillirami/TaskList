@@ -15,7 +15,7 @@
               <td><%= task.completed_at %></td>
               <% end %>
               <td><%= link_to "Mark Complete", mark_complete_path(task.id) %></td>
-              <td><%= link_to "Unmark Complete", unmark_complete_path(task.id) %></td>
+              <td><%= link_to "Mark Incomplete", mark_incomplete_path(task.id) %></td>
               <td><%= link_to "Show", task_path(task.id) %>
                   <%= link_to "Delete #{task.name}", verify_path(task.id) %></td>
                   <br>
@@ -25,22 +25,3 @@
     <br><br>
     <%= image_tag "tasklist.jpg", alt: "Stock image of to-do list with pen and coffee" %>
 </nav>
-
-
-
-<%# 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-} %>

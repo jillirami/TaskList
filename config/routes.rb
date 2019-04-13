@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   get '/tasks/:id/complete', to: 'tasks#mark_complete', as: 'mark_complete'
   patch '/tasks/:id/complete', to: 'tasks#mark_complete'
 
-  get '/tasks/:id/incomplete', to: 'tasks#unmark_complete', as: 'unmark_complete'
-  patch '/tasks/:id/incomplete', to: 'tasks#unmark_complete'
+  get '/tasks/:id/incomplete', to: 'tasks#mark_incomplete', as: 'mark_incomplete'
+  patch '/tasks/:id/incomplete', to: 'tasks#mark_incomplete'
 
   get '/tasks/:id/verify', to: 'tasks#verify', as: 'verify'
   delete '/tasks/:id/', to: 'tasks#destroy'
