@@ -51,6 +51,7 @@ class TasksController < ApplicationController
     task = Task.find_by(id: params[:id])
     if task.completed_at = "Incomplete"
       task.completed_at = "Complete"
+      task.completion_date = Time.now
       task.save
       redirect_to tasks_path
     end
