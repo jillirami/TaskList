@@ -7,10 +7,14 @@
 </h3>
 
 <h3>
-  Status: <%= @task.completed_at %>
+  Status: <% if @task.completed_at.nil? %>
+  <% @task.completed_at = "Incomplete" %>
+  <%= @task.completed_at %>
+  <% else %>
+  <%= @task.completed_at %>
+  <% end %>
 </h3>
 
 <%= link_to "Edit #{@task.name}", edit_task_path(@task.id) %>
 <%= link_to "Back to All Tasks", tasks_path %>
-<%= link_to "Delete #{@task.name}", task_path(@task.id), method: :delete %>
-<%# delete requires method clarification for path verb %>
+<%= link_to "Delete #{@task.name}", verify_path(@task.id) %>x

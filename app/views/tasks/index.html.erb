@@ -17,7 +17,7 @@
               <td><%= link_to "Mark Complete", mark_complete_path(task.id) %></td>
               <td><%= link_to "Unmark Complete", unmark_complete_path(task.id) %></td>
               <td><%= link_to "Show", task_path(task.id) %>
-                  <%= link_to "Delete", task_path(task.id), method: :delete %></td>
+                  <%= link_to "Delete #{task.name}", verify_path(task.id) %></td>
                   <br>
           <% end %>
       <% end %><br>

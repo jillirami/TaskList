@@ -76,6 +76,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def verify
+    @task = Task.find_by(id: params[:id])
+  end
+
   private
 
   def task_params
