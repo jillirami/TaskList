@@ -5,7 +5,7 @@ describe TasksController do
   #   you may need to modify this.
   let (:task) {
     Task.create name: "sample task", description: "this is an example for a test",
-                completed_at: false
+                completed_at: "", completion_date: ""
   }
 
   # Tests for Wave 1
@@ -61,13 +61,12 @@ describe TasksController do
     it "can create a new task" do
 
       # Arrange
-      # Note to students:  Your Task model **may** be different and
-      #   you may need to modify this.
       task_hash = {
         task: {
           name: "new task",
           description: "new task description",
-          completed_at: ""
+          completed_at: "",
+          completion_date: ""
         },
       }
 
@@ -78,7 +77,6 @@ describe TasksController do
 
       new_task = Task.find_by(name: task_hash[:task][:name])
 
-      # binding.pry
       expect(new_task.description).must_equal task_hash[:task][:description]
       expect(new_task.completed_at).must_equal task_hash[:task][:completed_at]
 
@@ -118,6 +116,12 @@ describe TasksController do
     end
 
     it "will redirect to the root page if given an invalid id" do
+    invalid_id = "NOT A VALID ID"
+    
+    get edit_task(1)
+    patch task_path(invalid_id)
+    
+    must_respond_with :redirect
       # Your code here
     end
   end

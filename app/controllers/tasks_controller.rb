@@ -43,7 +43,7 @@ class TasksController < ApplicationController
     if is_successful
       redirect_to task_path(task.id)
     else
-      head :not_found
+      redirect_to tasks_path
     end
   end
 
@@ -80,7 +80,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    return params.require(:task).permit(:name, :description, :completed_at)
+    return params.require(:task).permit(:name, :description, :completed_at, :completion_date)
   end
   
 end
