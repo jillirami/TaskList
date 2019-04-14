@@ -34,7 +34,7 @@ class TasksController < ApplicationController
   def edit
     @task = Task.find_by(id: params[:id])
   end
-
+ 
   def update
     task = Task.find_by(id: params[:id])
 
@@ -51,7 +51,7 @@ class TasksController < ApplicationController
     task = Task.find_by(id: params[:id])
     if task.completed_at = "Incomplete"
       task.completed_at = "Complete"
-      task.completion_date = Time.now
+      task.completion_date = Time.now.strftime("%F %T")
       task.save
       redirect_to tasks_path
     end
