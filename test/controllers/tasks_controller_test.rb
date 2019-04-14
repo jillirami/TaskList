@@ -122,9 +122,7 @@ describe TasksController do
     end
   end
 
-  # Complete these tests for Wave 4
   describe "destroy" do
-    # Your tests go here
     it "returns a 404 if the task if not found" do
       invalid_id = "NOT A VALID ID"
 
@@ -158,7 +156,6 @@ describe TasksController do
     end
   end
 
-  # Complete for Wave 4
   describe "toggle_complete" do
     # Your tests go here
   end

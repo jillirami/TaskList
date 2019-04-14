@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   ]
 
   def index    
-    @tasks = Task.all
+    @tasks = Task.all.order(:created_at)
   end
 
   def show
@@ -47,19 +47,15 @@ class TasksController < ApplicationController
     end
   end
 
-  def mark_complete
+  def toggle_complete
     task = Task.find_by(id: params[:id])
-    if task.completed_at = "Incomplete"
+
+    if task.completed_at == "Incomplete"
       task.completed_at = "Complete"
       task.completion_date = Time.now.strftime("%F %T")
       task.save
       redirect_to tasks_path
-    end
-  end
-
-  def mark_incomplete
-    task = Task.find_by(id: params[:id])
-    if task.completed_at = "Complete"
+    elsif task.completed_at == "Complete"
       task.completed_at = "Incomplete"
       task.save
       redirect_to tasks_path

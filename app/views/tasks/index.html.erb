@@ -14,8 +14,7 @@
               <% else %>
               <td><%= task.completed_at %></td>
               <% end %>
-              <td><%= link_to "Mark Complete", mark_complete_path(task.id) %></td>
-              <td><%= link_to "Mark Incomplete", mark_incomplete_path(task.id) %></td>
+              <td><%= link_to "Change Status", toggle_complete_path(task.id) %></td>
               <td><%= link_to "Show", task_path(task.id) %>
                   <%= link_to "Delete", verify_path(task.id) %></td>
                   <br>
