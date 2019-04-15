@@ -1,26 +1,37 @@
+<link href="stylesheets/index.css" rel="stylesheet" type="text/css">
+        
 <head>
   <title>Jillianne's TaskList</title>
 </head>
-
-<h1>Jillianne's TaskList</h1>
-<nav>
+<body>
+  <header>
+    <h1>Jillianne's TaskList</h1>
+  </header>
+  <section>
       <% if @tasks.length == 0 %>
       <h3>No Tasks</h3>
       <% else %>
           <% @tasks.each do |task| %>
+              <br>
               <td><%= task.name %></td>
               <% if task.completed_at.nil? %>
-              <td> Incomplete </td>
+              <br>
+              <td> <i>Incomplete</i> </td>
               <% else %>
-              <td><%= task.completed_at %></td>
+              <td><i><%= task.completed_at %></i></td>
               <% end %>
+              <br>
               <td><%= link_to "Change Status", toggle_complete_path(task.id) %></td>
               <td><%= link_to "Show", task_path(task.id) %>
                   <%= link_to "Delete", verify_path(task.id) %></td>
                   <br>
           <% end %>
-      <% end %><br>
+      <% end %><br><br>
     <%= link_to "Add New Task", new_task_path %>
-    <br><br>
-    <%= image_tag "tasklist.jpg", alt: "Stock image of to-do list with pen and coffee" %>
-</nav>
+    </section>
+    <footer>
+      &copy; 2019 Jillianne Ramirez
+    </footer>
+</body>
+
+<%#= image_tag "tasklist.jpg", alt: "Stock image of to-do list with pen and coffee" %>
