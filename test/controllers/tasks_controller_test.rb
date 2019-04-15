@@ -1,47 +1,35 @@
 require "test_helper"
 
 describe TasksController do
-  # Note to students:  Your Task model **may** be different and
-  #   you may need to modify this.
   let (:task) {
     Task.create name: "sample task", description: "this is an example for a test",
                 completed_at: "", completion_date: ""
   }
 
-  # Tests for Wave 1
   describe "index" do
     it "can get the index path" do
-      # Act
       get tasks_path
 
-      # Assert
       must_respond_with :success
     end
 
     it "can get the root path" do
-      # Act
       get root_path
 
-      # Assert
       must_respond_with :success
     end
   end
 
-  # Unskip these tests for Wave 2
   describe "show" do
     it "can get a valid task" do
-      # Act
       get task_path(task.id)
 
-      # Assert
       must_respond_with :success
     end
 
     it "will redirect for an invalid task" do
-      # Act
       get task_path(-1)
 
-      # Assert
       must_respond_with :redirect
     end
   end
@@ -49,18 +37,14 @@ describe TasksController do
   describe "new" do
     it "can get the new task page" do
 
-      # Act
       get new_task_path
 
-      # Assert
       must_respond_with :success
     end
   end
 
   describe "create" do
     it "can create a new task" do
-
-      # Arrange
       task_hash = {
         task: {
           name: "new task",
@@ -70,7 +54,6 @@ describe TasksController do
         },
       }
 
-      # Act-Assert
       expect {
         post tasks_path, params: task_hash
       }.must_change "Task.count", 1
@@ -85,44 +68,39 @@ describe TasksController do
     end
   end
 
-  # Unskip and complete these tests for Wave 3
   describe "edit" do
-    # it "can get the edit page for an existing task" do
-    #   task = {
-    #     name: "new task",
-    #     description: "new task description",
-    #     completed_at: "Complete",
-    #   }
+    it "can get the edit page for an existing task" do
+      get edit_task_path(task.id)
+      must_respond_with :success
+    end
 
-    #   expect {
-    #     get '/tasks/:id/edit', params: task
-    #   }.must_change "Task.count", 1
-
-
-    #   # Your code here
-    # end
-
-    # it "will respond with redirect when attempting to edit a nonexistant task" do
-    #   # Your code here
-    # end
+    it "will respond with redirect when attempting to edit a nonexistant task" do
+      get edit_task_path(-1)
+      must_respond_with :redirect
+    end
   end
 
-  # Uncomment and complete these tests for Wave 3
   describe "update" do
-    # Note:  If there was a way to fail to save the changes to a task, that would be a great
-    #        thing to test.
+    task_hash = {
+      task: {
+        name: "new task",
+        description: "new task description",
+        completed_at: "",
+        completion_date: ""
+      },
+    }
+
     it "can update an existing task" do
-      # Your code here
+      id = Task.first.id
+      expect {
+        patch task_path(id), params: task_hash
+      }.wont_change "Task.count"
     end
 
     it "will redirect to the root page if given an invalid id" do
-    invalid_id = "NOT A VALID ID"
-    
-    get edit_task(1)
-    patch task_path(invalid_id)
-    
-    must_respond_with :redirect
-      # Your code here
+      patch task_path(-1), params: task_hash
+      
+      must_respond_with :redirect
     end
   end
 
@@ -130,37 +108,49 @@ describe TasksController do
     it "returns a 404 if the task if not found" do
       invalid_id = "NOT A VALID ID"
 
-      # Act
-      # try to do tasks destroy action
-
       expect {
         delete task_path(invalid_id)
       }.wont_change "Task.count"
 
       must_respond_with :not_found
-
-      # Assert
-      # should respond with not found
-      # the count will change by 0 OR wont_change tasks.count
-
     end
 
     it "can delete a book" do
-    # Arrange
-    new_task = Task.create(name: "Call Sister")
+      new_task = Task.create(name: "Call Sister")
 
-    expect {
-    # Act
-    delete task_path(new_task.id)
-    # Assert
-    }.must_change "Task.count", -1
+      expect {
+        delete task_path(new_task.id)
+      }.must_change "Task.count", -1
 
-    must_respond_with :redirect
-    must_redirect_to tasks_path
+      must_respond_with :redirect
+      must_redirect_to tasks_path
     end
   end
 
   describe "toggle_complete" do
-    # Your tests go here
+    task_hash = {
+      task: {
+        name: "new task",
+        description: "new task description",
+        completed_at: "",
+        completion_date: ""
+      },
+    }
+
+    it "will change completion status of an existing task" do
+      id = Task.first.id
+      expect {
+        patch toggle_complete_path(id), params: task_hash
+      }.wont_change "Task.count"
+    end
+
+    it "will change completion status" do
+      task = Task.first
+      status = Task.first.completed_at
+
+      expect {
+        patch toggle_complete_path(task.id), params: task_hash
+      }.must_change task.completed_at
+    end 
   end
 end

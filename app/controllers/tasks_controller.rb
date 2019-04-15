@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   TASKS = [
-    {name: "Call Ma", description: "Family First", completed_at: ""}
+    {name: "Call Ma", description: "Family First", completed_at: "", completion_date: ""}
   ]
 
   def index    
@@ -33,17 +33,23 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find_by(id: params[:id])
+
+    if @task.nil?
+      redirect_to tasks_path
+    end
   end
  
   def update
     task = Task.find_by(id: params[:id])
 
-    is_successful = task.update(task_params)
+    if task.nil?
+      redirect_to tasks_path
+    else
+      is_successful = task.update(task_params)
+    end
 
     if is_successful
       redirect_to task_path(task.id)
-    else
-      redirect_to tasks_path
     end
   end
 
