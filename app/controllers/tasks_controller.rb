@@ -65,6 +65,11 @@ class TasksController < ApplicationController
       task.completed_at = "Incomplete"
       task.save
       redirect_to tasks_path
+    else
+      task.completed_at = "Complete"
+      task.completion_date = Time.now.strftime("%F %T")
+      task.update(completed_at: task.completed_at)
+      redirect_to tasks_path
     end
   end
 
