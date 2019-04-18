@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
-  TASKS = [
-    {name: "Call Ma", description: "Family First", completed_at: "", completion_date: ""}
-  ]
+  # TASKS = [
+    # {name: "Call Ma", description: "Family First", completed_at: "", completion_date: ""}
+  # ]
 
   def index    
     @tasks = Task.all.order(:created_at)

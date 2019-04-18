@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 * {
   font-family: 'Lato', sans-serif;
@@ -33,7 +33,7 @@ footer {
   color: #99a1b4;
   padding: 3px;
   grid-row: 3;
-} */
+}
 
 
 
