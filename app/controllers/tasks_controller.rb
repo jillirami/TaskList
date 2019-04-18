@@ -70,7 +70,7 @@ class TasksController < ApplicationController
       task.completion_date = Time.now.strftime("%F %T")
       task.update(completed_at: task.completed_at)
       redirect_to tasks_path
-    end
+    end                        
   end
 
   def destroy

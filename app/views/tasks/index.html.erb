@@ -21,7 +21,7 @@
               <td><i><%= task.completed_at %></i></td>
               <% end %>
               <br>
-              <td><%= link_to "Change Status", toggle_complete_path(task.id) %></td>
+              <td><%= button_to "Change Status", toggle_complete_path(task.id), method: :patch %></td>
               <td><%= link_to "Show", task_path(task.id) %>
                   <%= link_to "Delete", verify_path(task.id) %></td>
                   <br>
