@@ -1,8 +1,4 @@
 class TasksController < ApplicationController
-  # TASKS = [
-    # {name: "Call Ma", description: "Family First", completed_at: "", completion_date: ""}
-  # ]
-
   def index    
     @tasks = Task.all.order(:created_at)
   end
@@ -91,7 +87,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    return params.require(:task).permit(:name, :description, :completed_at, :completion_date)
+    return params.require(:task).permit(:name, :description, :status)
   end
   
 end
